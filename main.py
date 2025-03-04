@@ -1,4 +1,9 @@
-from server import application;
+from server import application, database, admin;
+
 
 if __name__ == "__main__":
-	application.run( debug = True );
+	admin.auth.User.create_table(fail_silently=True)
+	database.TagDB.create_table(fail_silently=True)
+	database.PostDB.create_table(fail_silently=True)
+	
+	application.run( debug = True )
