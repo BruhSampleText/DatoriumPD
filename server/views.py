@@ -4,7 +4,12 @@ import flask;
 
 @application.route( "/" )
 def route_main():
-	return flask.render_template( "main.html", posts = database.get_most_recent() )
+	query = database.get_most_recent()
+
+	for thinfy in query:
+		print( thinfy.title )
+
+	return flask.render_template( "main.html", posts = query )
 
 @application.route( "/get/page/<int:page>" )
 def	route_get_page( page ):
