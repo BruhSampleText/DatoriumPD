@@ -26,10 +26,14 @@ class TagDB( db.Model ):
 #http://docs.peewee-orm.com/en/latest/peewee/api.html#Model.select
 #http://docs.peewee-orm.com/en/latest/peewee/api.html#Query.where
 
-PAGE_SIZE = 3
+PAGE_SIZE = 5
 def get_page( page_index ):
-	return PostDB.select()
+	return (
+		PostDB.select()
+		.where( PostDB.id >= (page_index * PAGE_SIZE) )
+		.where( PostDB.id < (page_index * PAGE_SIZE + PAGE_SIZE ) )
+		.order_by( PostDB.date.desc() )
+		)
 
-
-def get_most_recent():
-	return PostDB.select().limit( PAGE_SIZE ).order_by( PostDB.date.desc() )
+def get_most_recent( count = PAGE_SIZE ):
+	return PostDB.select().limit( count ).order_by( PostDB.date.desc() )
