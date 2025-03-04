@@ -6,4 +6,6 @@ if __name__ == "__main__":
 	database.TagDB.create_table(fail_silently=True)
 	database.PostDB.create_table(fail_silently=True)
 	
+	#database.PostDB.drop_table()
+
 	application.run( debug = True )
