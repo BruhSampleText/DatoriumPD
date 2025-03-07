@@ -9,7 +9,11 @@ DATABASE = {
 	"engine": "peewee.SqliteDatabase"
 }
 
-application = flask.Flask(__name__) 
+application = flask.Flask(
+	__name__,
+	template_folder = "../templates",
+	static_folder = "../static"
+	) 
 application.config.from_object(__name__)
 
 from server import database;
