@@ -11,8 +11,8 @@ DATABASE = {
 
 application = flask.Flask(
 	__name__,
-	template_folder = "../templates",
-	static_folder = "../static"
+	#template_folder = "../templates",
+	#static_folder = "../static"
 	) 
 application.config.from_object(__name__)
 

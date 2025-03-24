@@ -16,6 +16,21 @@ def	route_get_page( page ):
 	return flask.render_template( "main.html", posts = query )
 
 
+@application.route( "/post/create" )
+def	route_post_create():
+	return flask.render_template( "post_create.html" )
+
+@application.route( "/post/view<int:id>" )
+def	route_post_view():
+	bogus_data = {}
+	return flask.render_template( "post_view.html", data = bogus_data )
+
+
+@application.route( "/post/search" )
+def	route_post_search():
+	return "My ass"
+
+
 ## Retarded crap
 
 @application.route( "/crateadmin" )
