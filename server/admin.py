@@ -14,5 +14,6 @@ class AdminUser( ModelAdmin ):
 
 admin.register( database.TagDB, AdminUser )
 admin.register( database.PostDB, AdminUser )
+admin.register( database.PostTagDB, AdminUser )
 
 admin.setup()

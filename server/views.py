@@ -26,9 +26,18 @@ def	route_post_view():
 	return flask.render_template( "post_view.html", data = bogus_data )
 
 
-@application.route( "/post/search" )
+@application.route( "/post/search", methods=['GET', 'POST'] )
 def	route_post_search():
-	return "My ass"
+	
+	result = []
+	if flask.request.method == "GET":
+		query = flask.request.args.get( "query", "" )
+		print( "Debug: " + query )
+		
+
+	
+
+	return flask.render_template( "post_search.html", result = result )
 
 
 ## Retarded crap
@@ -45,3 +54,4 @@ def	route_dev_create_admin():
 def route_dev_drop_db():
 	database.PostDB.drop_table()
 	database.TagDB.drop_table()
+	database.PostTagDB.drop_table()

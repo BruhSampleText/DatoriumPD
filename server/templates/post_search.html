@@ -1,0 +1,13 @@
+<form action="" method="get">
+	Tag: <input type="text" name="query"><br>
+	<input type="submit" value="Search">
+</form>
+
+{% if results %}
+	<h2>Search results: </h2>
+	<ul>
+		{% for post in results %}
+			<li><strong>{{post.title}}</strong></li>
+		{% endfor %}
+	</ul>
+{% endif %}
