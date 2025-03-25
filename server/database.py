@@ -41,10 +41,14 @@ def get_page( page_index ):
 def get_most_recent( count = PAGE_SIZE ):
 	return PostDB.select().limit( count ).order_by( PostDB.date.desc() )
 
-def find_all_with_tag( tag ):
+def find_all_with_tag_ids( tags ):
 	return (
 		PostTagDB.select()
-		.where( PostTagDB.tag.tag.lower() == tag.lower() )
+		.where( PostTagDB.tag.in_( tags ) )
 	)
 
-#def find_closest_tag( query ):
+def get_tag( tag ):
+	return (
+		TagDB.select()
+		.where( TagDB.tag == tag )
+	)

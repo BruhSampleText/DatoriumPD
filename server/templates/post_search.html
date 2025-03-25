@@ -1,7 +1,13 @@
-<form action="" method="get">
-	Tag: <input type="text" name="query"><br>
+<script type="text/javascript" src="{{ url_for( "static", filename = "scripts/autocomplete.js" ) }}"></script>
+
+<form action="" autocomplete="off" method="get">
+	Tags: <input type="text" name="query" id="search_bar" value="{{ search_term }}"><br>
 	<input type="submit" value="Search">
 </form>
+
+<script>
+	bind_tag_autocomplete( document.getElementById( "search_bar" ) )
+</script>
 
 {% if results %}
 	<h2>Search results: </h2>

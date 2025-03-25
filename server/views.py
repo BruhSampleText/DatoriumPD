@@ -25,20 +25,13 @@ def	route_post_view():
 	bogus_data = {}
 	return flask.render_template( "post_view.html", data = bogus_data )
 
+### post/search is in its own file
 
-@application.route( "/post/search", methods=['GET', 'POST'] )
-def	route_post_search():
-	
-	result = []
-	if flask.request.method == "GET":
-		query = flask.request.args.get( "query", "" )
-		print( "Debug: " + query )
-		
+## This stuff
 
-	
-
-	return flask.render_template( "post_search.html", result = result )
-
+@application.route( "/statistics" )
+def	route_statistics():
+	return flask.render_template( "post_create.html" )
 
 ## Retarded crap
 
