@@ -1,0 +1,25 @@
+<form action="">
+    <label for="postTitleInputField">Post title:</label><input type="text", id="postTitleInputField" name="=postTitleInputField"><br>
+    <label for="tagInputField">Tags:</label><input type="text" id="tagInputField" name="tagInputField"><br>
+    Pictures(Max 4): <input onchange="updatePictures()" type="file" id="pictureInput" name="pictureInput" accept="image/png, image/jpeg"> <br>
+    <img style="display: none;" id="picture1">
+    <input type="submit" value="Post!">
+    
+</form>
+
+<script>
+    var picturePreview = document.getElementById("picturePreview")
+    var picture1 = document.getElementById("picture1")
+    function updatePictures(){
+        if(picturePreview.value != ''){
+            picture1.src=picturePreview.value
+            picture1.style.display="none"
+        }
+        else{
+            picture1.src=''
+            picture1.style.display="block"
+        }
+
+    }
+</script>
+
