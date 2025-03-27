@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset='utf-8'>
-		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-		<title>Veber padžšs</title>
-		<meta name='viewport' content='width=device-width, initial-scale=1'>
-		<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-	</head>
-	<body>
-
-		<p>Galvanā lapa</p>
-		{% for post in posts %}
-			<div>
-				<p>Name: {{ post.title }}</p>
-			</div>
-		{% endfor %}
-
-	</body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'styles.css' ) }}">
+    <title>FindMYstuff</title>
+</head>
+<body>
+    <div id="Header">
+        <div id="topRow"></div>
+        <div id="bottomRow">
+		</div>
+    </div>
+    <hr>
+    <div id="Main">
+        <div class="grid">
+        </div>
+    </div>
+    <script src="{{ url_for( 'static', filename = 'scripts/index.js' ) }}"></script>
+</body>
 </html>
