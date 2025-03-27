@@ -3,7 +3,7 @@ import flask;
 
 application = flask.Flask( __name__ )
 
-SECRET_KEY = "Polim patīk mazas meitenītes"
+SECRET_KEY = "BingBongSkibidit toiket 69420 amognusf sdnsjfnsekfngedkfnsfndjehnfsjfndjf sdjfmjf"
 DATABASE = {
 	"name": "bogWater.db",
 	"engine": "peewee.SqliteDatabase"

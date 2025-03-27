@@ -25,13 +25,12 @@ def	route_post_view():
 	bogus_data = {}
 	return flask.render_template( "post_view.html", data = bogus_data )
 
-### post/search is in its own file
-
 ## This stuff
 
 @application.route( "/statistics" )
 def	route_statistics():
 	return flask.render_template( "post_create.html" )
+
 
 ## Retarded crap
 

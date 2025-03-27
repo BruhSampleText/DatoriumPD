@@ -1,16 +1,18 @@
 
-
-<form action="" method="post" enctype="multipart/form-data">
+<link rel="stylesheet" href="{{ url_for( "static", filename = "autocomplete.css" ) }}">
+<form action="" method="" enctype="multipart/form-data" autocomplete="off" >
 	<label for="post_title">Post title:</label>
-	<input type="text" id="post_title" name="post_title">
+	<input type="text" id="post_title" name="post_title" required>
 	<br>
 
 	<label for="post_tags">Post tags:</label>
-	<input type="text" id="post_tags" name="post_tags">
+	<div class="autocomplete">
+		<input type="text" id="post_tags" name="post_tags" required>
+	</div>	
 	<br>
 
 	<label for="post_images">Post images:</label>
-	<input type="file" id="post_images" name="post_images" accept="image/*" multiple>
+	<input type="file" id="post_images" name="post_images" accept="image/*" multiple required>
 	<br>
 
 	<div id="image_preview_holder"></div>	
@@ -20,7 +22,8 @@
 
 </form>
 
-<script>
+<script type="text/javascript" src="{{ url_for( "static", filename = "scripts/autocomplete.js" ) }}"></script>
+<script type="text/javascript">
 
 	const upload = document.getElementById( "post_images" )
 	const image_holder = document.getElementById( "image_preview_holder" )
@@ -39,6 +42,8 @@
 		}
 
 	}
+
+	bind_tag_autocomplete( document.getElementById( "post_tags" ) )
 
 </script>
 

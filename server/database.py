@@ -2,7 +2,7 @@ import random;
 import math;
 
 from flask_peewee.db import Database
-from peewee import TextField, CharField, DateTimeField, ForeignKeyField
+from peewee import TextField, CharField, DateTimeField, ForeignKeyField, fn
 
 from server import application
 
@@ -41,14 +41,18 @@ def get_page( page_index ):
 def get_most_recent( count = PAGE_SIZE ):
 	return PostDB.select().limit( count ).order_by( PostDB.date.desc() )
 
-def find_all_with_tag_ids( tags ):
-	return (
-		PostTagDB.select()
-		.where( PostTagDB.tag.in_( tags ) )
+def get_posts_with_tags( tags ):
+
+	tags = TagDB.select().where( TagDB.tag.in_( tags ) )
+	tag_ids = [tag.id for tag in tags]
+
+	tag_count = len(tag_ids)
+
+	result = ( PostDB.select()
+		.join(PostTagDB)
+		.where(PostTagDB.tag.in_(tag_ids))
+		.group_by(PostDB)
+		.having( fn.COUNT(PostTagDB.tag) == tag_count)  # Ensures all tags are matched
 	)
 
-def get_tag( tag ):
-	return (
-		TagDB.select()
-		.where( TagDB.tag == tag )
-	)
+	return result
