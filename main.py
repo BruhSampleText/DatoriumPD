@@ -7,4 +7,6 @@ if __name__ == "__main__":
 	database.PostDB.create_table(fail_silently=True)
 	database.PostTagDB.create_table(fail_silently=True)
 	
+
+
 	application.run( debug = True )

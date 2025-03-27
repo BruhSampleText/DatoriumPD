@@ -6,6 +6,7 @@ import flask;
 def parse_query( query ):
 	return re.findall( r'\w+', query.lower() )
 
+
 @application.route( "/get/tags" )
 def route_get_tags():
 	return flask.jsonify( database.get_tags_for_client() )

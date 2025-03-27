@@ -20,3 +20,4 @@ from server import database;
 from server import views;
 from server import search;
 from server import admin;
+from server import statistics;

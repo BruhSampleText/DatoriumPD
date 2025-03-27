@@ -10,9 +10,6 @@ def route_main():
 @application.route( "/get/page/<int:page>" )
 def	route_get_page( page ):
 	query = database.get_page( page )
-
-	for thinfy in query:
-		print( thinfy.title + " @ " + str( thinfy.date.year ) + " | id: " + str(thinfy.id) )
 	return flask.render_template( "main.html", posts = query )
 
 
@@ -24,13 +21,6 @@ def	route_post_create():
 def	route_post_view():
 	bogus_data = {}
 	return flask.render_template( "post_view.html", data = bogus_data )
-
-## This stuff
-
-@application.route( "/statistics" )
-def	route_statistics():
-	return flask.render_template( "post_create.html" )
-
 
 ## Retarded crap
 
