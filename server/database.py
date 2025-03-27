@@ -56,3 +56,6 @@ def get_posts_with_tags( tags ):
 	)
 
 	return result
+
+def get_tags_for_client():
+	return [ tag.tag for tag in TagDB.select() ]
