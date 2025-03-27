@@ -1,25 +1,44 @@
-<form action="">
-    <label for="postTitleInputField">Post title:</label><input type="text", id="postTitleInputField" name="=postTitleInputField"><br>
-    <label for="tagInputField">Tags:</label><input type="text" id="tagInputField" name="tagInputField"><br>
-    Pictures(Max 4): <input onchange="updatePictures()" type="file" id="pictureInput" name="pictureInput" accept="image/png, image/jpeg"> <br>
-    <img style="display: none;" id="picture1">
-    <input type="submit" value="Post!">
-    
+
+
+<form action="" method="post" enctype="multipart/form-data">
+	<label for="post_title">Post title:</label>
+	<input type="text" id="post_title" name="post_title">
+	<br>
+
+	<label for="post_tags">Post tags:</label>
+	<input type="text" id="post_tags" name="post_tags">
+	<br>
+
+	<label for="post_images">Post images:</label>
+	<input type="file" id="post_images" name="post_images" accept="image/*" multiple>
+	<br>
+
+	<div id="image_preview_holder"></div>	
+	<br>
+
+	<input type="submit" value="Post!">
+
 </form>
 
 <script>
-    var picturePreview = document.getElementById("picturePreview")
-    var picture1 = document.getElementById("picture1")
-    function updatePictures(){
-        if(picturePreview.value != ''){
-            picture1.src=picturePreview.value
-            picture1.style.display="none"
-        }
-        else{
-            picture1.src=''
-            picture1.style.display="block"
-        }
 
-    }
+	const upload = document.getElementById( "post_images" )
+	const image_holder = document.getElementById( "image_preview_holder" )
+	upload.onchange = event => {
+		while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
+		
+		console.log( upload.files )
+
+		const files = upload.files
+		for ( let i = 0; i < files.length; i++ ) {
+			if ( i > 4) break;
+			let img = document.createElement( "img" )
+			img.style = "max-width: 100px; max-height: 100px"
+			image_holder.append( img )
+			img.src = URL.createObjectURL( files[ i ] )
+		}
+
+	}
+
 </script>
 
