@@ -1,25 +1,25 @@
-#Header {
+#beader {
     position: sticky;
     width: 100%;
-    height: 160px;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
     /* temporary background colour*/
     background-color: red;
 }
-
-#topRow {
-    width: 100%;
-    height: 45%;
-    /* temporary background colour*/
-    background-color: blue;
+#beader > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 20%;
+    height: 90%;
+    padding: 0 10px;
+    background-color: brown;
 }
-
-#bottomRow {
-    width: 100%;
-    height: 55%;
-    /* temporary background colour*/
-    background-color: yellow;
-}
-
 
 #Main {
     position: relative;
