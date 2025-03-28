@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{{ url_for( "static", filename = "autocomplete.css" ) }}">
 <form action="" method="" enctype="multipart/form-data" autocomplete="off" >
 	<label for="post_title">Post title:</label>
@@ -10,14 +9,19 @@
 		<input type="text" id="post_tags" name="post_tags" required>
 	</div>	
 	<br>
-
-	<label for="post_images">Post images:</label>
+	<label>Date when found: <input type="date" id="foundDate"> </label> <br> 
+	<label for="post_images">Post images (max 4):</label>
 	<input type="file" id="post_images" name="post_images" accept="image/*" multiple required>
+	<br>
+	<a style="font-size: 10px;">Click on image to delete it</h3>
 	<br>
 
 	<div id="image_preview_holder"></div>	
 	<br>
+	<div id="forButtons">
 
+	</div>
+	<br>
 	<input type="submit" value="Post!">
 
 </form>
@@ -27,23 +31,58 @@
 
 	const upload = document.getElementById( "post_images" )
 	const image_holder = document.getElementById( "image_preview_holder" )
+	const forButtons = document.getElementById("forButtons")
+	let files = upload.files
+
+	function remove(what){
+		//console.log( document.getElementById( "button" + what ).style )
+		forButtons.removeChild(document.getElementById("button" + what))
+		// console.log("remove IMG " + document.querySelector('.forButtons:nth-child(1)').src)
+	}
+	function makeButton(){
+		let removeButton = document.createElement("button")
+		removeButton.onclick = () => {remove(i)}
+		removeButton.innerHTML = "Remove picture"
+		removeButton.style.width = 50 + "px";
+		forButtons.append(removeButton)
+	}
 	upload.onchange = event => {
-		while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
+		pictures=0;
+		//while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
+		while ( forButtons.firstChild ) { forButtons.removeChild( forButtons.lastChild ) }
 		
 		console.log( upload.files )
 
 		const files = upload.files
 		for ( let i = 0; i < files.length; i++ ) {
 			if ( i > 4) break;
+			
 			let img = document.createElement( "img" )
-			img.style = "max-width: 100px; max-height: 100px"
+			img.style = "max-width: 150px; max-height: 150px"
 			image_holder.append( img )
+			// img.onload= makeButton()
 			img.src = URL.createObjectURL( files[ i ] )
-		}
 
+			let removeButton = document.createElement("button")
+			removeButton.onclick = () => {remove(i)}
+			removeButton.style.backgroundImage = URL.createObjectURL( files[ i ] )
+			removeButton.style = "max-width: 150px; max-height: 150px"
+			removeButton.style.border = "none"
+			removeButton.type = "Button"
+			// removeButton.style.background = "none"
+			removeButton.style.padding = "0"
+			removeButton.style.cursor = "pointer"
+			removeButton.id = "button" +i
+			removeButton.append(img)
+			forButtons.append(removeButton)
+
+
+			
+		
+		//I don't care anymore
+		}
 	}
 
 	bind_tag_autocomplete( document.getElementById( "post_tags" ) )
 
 </script>
-
