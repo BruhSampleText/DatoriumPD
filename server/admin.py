@@ -12,8 +12,9 @@ class AdminUser( ModelAdmin ):
 	columns: ( "name" )
 
 
-admin.register( database.TagDB, AdminUser )
+admin.register( database.TagDB , AdminUser )
 admin.register( database.PostDB, AdminUser )
 admin.register( database.PostTagDB, AdminUser )
+admin.register( database.PostImageDB, AdminUser )
 
 admin.setup()

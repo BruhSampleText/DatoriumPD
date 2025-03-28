@@ -15,15 +15,9 @@ def	route_get_page( page ):
 		print( thinfy.title + " @ " + str( thinfy.date.year ) + " | id: " + str(thinfy.id) )
 	return flask.render_template( "main.html", posts = query )
 
-
-@application.route( "/post/create" )
-def	route_post_create():
-	return flask.render_template( "post_create.html" )
-
-@application.route( "/post/view<int:id>" )
-def	route_post_view():
-	bogus_data = {}
-	return flask.render_template( "post_view.html", data = bogus_data )
+@application.route( "/post/view/<int:id>" )
+def	route_post_view( id ):
+	return flask.render_template( "post_view.html", data = database.get_page( id ) )
 
 ## This stuff
 
@@ -47,3 +41,6 @@ def route_dev_drop_db():
 	database.PostDB.drop_table()
 	database.TagDB.drop_table()
 	database.PostTagDB.drop_table()
+
+from server import search;
+from server import create;

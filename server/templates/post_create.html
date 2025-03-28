@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ url_for( "static", filename = "autocomplete.css" ) }}">
-<form action="" method="" enctype="multipart/form-data" autocomplete="off" >
+<form action="" method="post" enctype="multipart/form-data" autocomplete="off" >
 	<label for="post_title">Post title:</label>
 	<input type="text" id="post_title" name="post_title" required>
 	<br>
@@ -9,7 +9,11 @@
 		<input type="text" id="post_tags" name="post_tags" required>
 	</div>	
 	<br>
-	<label>Date when found: <input type="date" id="foundDate"> </label> <br> 
+
+	<label for="post_date">Date when found:</label>
+	<input type="datetime-local" id="post_date", name="post_date"></input>
+	<br>
+	
 	<label for="post_images">Post images (max 4):</label>
 	<input type="file" id="post_images" name="post_images" accept="image/*" multiple required>
 	<br>

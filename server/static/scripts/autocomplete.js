@@ -1,17 +1,20 @@
 // somewhat taken from: https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
-var tags = [ "footwear", "clothing" ]
-tags.sort()
-console.log( tags )
-
 /**
  * @argument {HTMLInputElement} inputField
  */
+
+var tags = []
+
 const bind_tag_autocomplete = ( inputField ) => {
 	/**@type {HTMLDivElement} */
 	const autocomplete_result_list = document.createElement( "div" )
 	autocomplete_result_list.setAttribute( "class", "autocomplete-items" )
 	inputField.parentElement.append( autocomplete_result_list )
+
+	fetch( "../get/tags" )
+		.then( response => response.json() )
+		.then( data => { tags = data } )
 
 	const clear_suggestions = () => {
 		while( autocomplete_result_list.firstChild ) {
@@ -48,4 +51,7 @@ const bind_tag_autocomplete = ( inputField ) => {
 		}
 
 	} )
+
+	document.addEventListener( "click", clear_suggestions )
+
 }
