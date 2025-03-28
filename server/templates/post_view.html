@@ -1,20 +1,34 @@
-<div id="beader">
-    <div><a href="/post/view">VIEW</a></div>
-    <div><a href="/post/statics">STATISTICS</a></div>
-    <div><a href="/post/search">SEARCH</a></div>
-    <div><a href="/">HOME</a></div>
-</div>
-<hr><br>
-<div id="mostRecent"><div>VIEW ALL LOST ITEMS</div></div>
-<br>
-<div id="Main" class="grid">
-    {% for post in posts %}
-        <div class="advert">
-            <div id="adLeft"><img src="https://cdn.mos.cms.futurecdn.net/GsnyJQ3bh2gcsuLchip5HU-1200-80.jpg"></div>
-            <div id="adRight">
-                <h3 id="adTtl">{{ post.title }}</h3>
-                <p id="adTgs" style="font-style: italic; font-size: 80%;">Tags:</p>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'styles.css' ) }}">
+    <title>FindMYstuff</title>
+</head>
+<body>
+    <div id="beader">
+        <div><a href="/post/view">VIEW</a></div>
+        <div><a href="/post/statics">STATISTICS</a></div>
+        <div><a href="/post/search">SEARCH</a></div>
+        <div><a href="/">HOME</a></div>
+    </div>
+    <hr><br>
+    <div id="mostRecent"><div>VIEW ALL LOST ITEMS</div></div>
+    <br>
+    <div id="Main" class="grid">
+        {% for post in posts %}
+            <div class="advert">
+                <div id="adLeft"><img src="https://cdn.mos.cms.futurecdn.net/GsnyJQ3bh2gcsuLchip5HU-1200-80.jpg"></div>
+                <div id="adRight">
+                    <h3 id="adTtl">{{ post.title }}</h3>
+                    <p id="adTgs" style="font-style: italic; font-size: 80%;">Tags:</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
+    <script src="{{ url_for( 'static', filename = 'scripts/index.js' ) }}"></script>
+</body>
+</html>

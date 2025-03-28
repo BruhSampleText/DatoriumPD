@@ -63,6 +63,24 @@
     margin-right: auto;
 }
 
+#serchbar {
+    text-align: center;
+}
+
+#search_tags {
+    margin: auto;
+    background-color: beige;
+}
+
+#submit_button {
+    width: 50%;
+    background-color: rgb(227, 145, 116);
+    border: none;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
 
 
 .grid {
@@ -105,4 +123,8 @@ img {
     object-fit: cover;
     width: 100px;
     height: 100px;
+}
+
+h3 {
+    text-transform: uppercase;
 }

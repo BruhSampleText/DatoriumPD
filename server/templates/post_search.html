@@ -1,27 +1,47 @@
-
-<link rel="stylesheet" href="{{ url_for( "static", filename = "autocomplete.css" ) }}">
-<script type="text/javascript" src="{{ url_for( "static", filename = "scripts/autocomplete.js" ) }}"></script>
-
-<form action="" autocomplete="off" method="get">
-	<label for="search_tags">Tags: </label>
-	
-	<div class="autocomplete">
-		<input type="text" id="search_tags" name="query" value="{{ search_term }}" required>
+<script type="text/javascript" src="{{ url_for( 'static', filename = 'scripts/autocomplete.js' ) }}"></script>
+	<script>
+		bind_tag_autocomplete( document.getElementById( "search_tags" ) )
+	</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for( 'static', filename = 'autocomplete.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'styles.css' ) }}">
+    <title>FindMYstuff</title>
+</head>
+<body>
+    <div id="beader">
+        <div><a href="/post/view/1">VIEW</a></div>
+        <div><a href="/post/statics">STATISTICS</a></div>
+        <div><a href="/post/search">SEARCH</a></div>
+        <div><a href="/">HOME</a></div>
+    </div>
+    <hr><br>
+    <div id="mostRecent">
+		<div>IMPUT TAGS TO SEARCH</div>
+		<form action="" autocomplete="off" method="get" id="serchbar"><br>
+			<div class="autocomplete">
+				<input type="text" id="search_tags" name="query" value="{{ search_term }}" required>
+			</div><br><br>
+			<input type="submit" id="submit_button" value="SEARCH">
+		</form>
 	</div>
-
-	<br>
-	<input type="submit" value="Search">
-</form>
-
-<script>
-	bind_tag_autocomplete( document.getElementById( "search_tags" ) )
-</script>
-
-{% if results %}
-	<h2>Search results: </h2>
-	<ul>
-		{% for post in results %}
-			<li><strong>{{post.title}}</strong></li>
-		{% endfor %}
-	</ul>
-{% endif %}
+    <br>
+    <div id="Main" class="grid">
+        {% if results %}
+			{% for post in results %}
+				<div class="advert">
+					<div id="adLeft"><img src="https://cdn.mos.cms.futurecdn.net/GsnyJQ3bh2gcsuLchip5HU-1200-80.jpg"></div>
+					<div id="adRight">
+						<h3 id="adTtl">{{ post.title }}</h3>
+						<p id="adTgs" style="font-style: italic; font-size: 80%;">Tags:</p>
+					</div>
+				</div>
+			{% endfor %}
+        {% endif %}
+    </div>
+    <script src="{{ url_for( 'static', filename = 'scripts/index.js' ) }}"></script>
+</body>
+</html>
