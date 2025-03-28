@@ -8,18 +8,25 @@
 </head>
 <body>
     <div id="beader">
-		<div><a href="/post/view">VIEW</a></div>
-		<div><a href="/post/statics">STATISTICS</a></div>
-		<div><a href="/post/search">SEARCH</a></div>
-		<div><a href="https://youtu.be/6n3pFFPSlW4?si=C1Ft72L0MSmXYRiA">HOME</a></div>
+        <div><a href="/post/view/1">VIEW</a></div>
+        <div><a href="/post/statics">STATISTICS</a></div>
+        <div><a href="/post/search">SEARCH</a></div>
+        <div><a href="https://youtu.be/6n3pFFPSlW4?si=C1Ft72L0MSmXYRiA">HOME</a></div>
     </div>
     <hr><br>
-	<div id="mostRecent"><div>MOST RECENTLY FOUND LOST ITEMS</div></div>
-	<br>
+    <div id="mostRecent"><div>MOST RECENTLY FOUND LOST ITEMS</div></div>
+    <br>
     <div id="Main" class="grid">
-        <div>1</div>
-		<div>2</div>
-		<div>3</div>
+        <!-- Wish to have max 9 in the home pages for the most recetly found items -->
+        {% for post in posts %}
+            <div class="advert">
+                <div id="adLeft"><img src="https://cdn.mos.cms.futurecdn.net/GsnyJQ3bh2gcsuLchip5HU-1200-80.jpg"></div>
+                <div id="adRight">
+                    <h3 id="adTtl">{{ post.title }}</h3>
+                    <p id="adTgs" style="font-style: italic; font-size: 80%;">Tags:</p>
+                </div>
+            </div>
+        {% endfor %}
     </div>
     <script src="{{ url_for( 'static', filename = 'scripts/index.js' ) }}"></script>
 </body>
