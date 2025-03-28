@@ -22,7 +22,6 @@ def add_tags_to_post( post_id, tags ):
 		new_post_tag.save()
 	
 def add_images_to_post( post_id, files ):
-	print( files )
 	for file in files:
 		print( file.filename )
 
@@ -61,7 +60,8 @@ def	route_post_create():
 
 		tags = parse_query( tags )
 		add_tags_to_post( new_post.id, tags )
-		add_images_to_post( new_post.id, flask.request.files.getlist( "post_images" ) )
+		if "post_images" in flask.request.files :
+			add_images_to_post( new_post.id, flask.request.files.getlist( "post_images" ) )
 
 		#return flask.redirect( "/" )
 
