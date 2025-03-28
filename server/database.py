@@ -23,6 +23,10 @@ class PostTagDB( db.Model ):
 	post = ForeignKeyField( PostDB, backref = "tags" )
 	tag = ForeignKeyField( TagDB, backref = "posts" )
 
+class PostImageDB( db.Model ):
+	post = ForeignKeyField( PostDB, backref="image" )
+	image = TextField( null=True )
+
 
 ### CONTENT PROVIDING
 
@@ -49,13 +53,22 @@ def get_posts_with_tags( tags ):
 	tag_count = len(tag_ids)
 
 	result = ( PostDB.select()
-		.join(PostTagDB)
-		.where(PostTagDB.tag.in_(tag_ids))
-		.group_by(PostDB)
-		.having( fn.COUNT(PostTagDB.tag) == tag_count)  # Ensures all tags are matched
+		.join( PostTagDB )
+		.where( PostTagDB.tag.in_(tag_ids) )
+		.group_by( PostDB )
+		.having( fn.COUNT(PostTagDB.tag) == tag_count )
 	)
 
 	return result
 
 def get_tags_for_client():
 	return [ tag.tag for tag in TagDB.select() ]
+
+def get_images_for_post( post_id ):
+	all_related_images = PostImageDB.select().where( PostImageDB.post.id == post_id )
+	return [ img.image for img in all_related_images ]
+
+def get_tag( name ):
+	return (
+		TagDB.select().where( TagDB.tag == name.lower() )
+	)

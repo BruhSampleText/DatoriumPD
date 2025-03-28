@@ -18,5 +18,4 @@ application.config.from_object(__name__)
 
 from server import database;
 from server import views;
-from server import search;
 from server import admin;
