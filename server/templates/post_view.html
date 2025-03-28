@@ -1,0 +1,20 @@
+<div id="beader">
+    <div><a href="/post/view">VIEW</a></div>
+    <div><a href="/post/statics">STATISTICS</a></div>
+    <div><a href="/post/search">SEARCH</a></div>
+    <div><a href="/">HOME</a></div>
+</div>
+<hr><br>
+<div id="mostRecent"><div>VIEW ALL LOST ITEMS</div></div>
+<br>
+<div id="Main" class="grid">
+    {% for post in posts %}
+        <div class="advert">
+            <div id="adLeft"><img src="https://cdn.mos.cms.futurecdn.net/GsnyJQ3bh2gcsuLchip5HU-1200-80.jpg"></div>
+            <div id="adRight">
+                <h3 id="adTtl">{{ post.title }}</h3>
+                <p id="adTgs" style="font-style: italic; font-size: 80%;">Tags:</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
