@@ -8,9 +8,9 @@
     align-items: center;
     text-align: center;
     /* temporary background colour*/
-    background-color: red;
+    background-color: brown;
 }
-#beader > div {
+#beader > div a {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -19,6 +19,14 @@
     height: 90%;
     padding: 0 10px;
     background-color: brown;
+
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+#beader > div a:hover {
+    color: wheat;
 }
 
 #Main {
@@ -29,21 +37,39 @@
     background-color: blue;
 }
 
+#mostRecent {
+    background-color: burlywood;
+}
+#mostRecent > div {
+    text-align: center;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    background-color: rgb(227, 145, 116);
+    margin: auto;
+    width: 50%;
+}
+
 
 
 .grid {
     display: grid;
     grid-template-columns: auto auto auto;
-    padding: 2%;
 }
 
 .grid > div {
+    margin: auto;
     background-color: burlywood;
-    padding: 5%;
+    color: brown;
+    width: 90%;
 }
 
 
 body {
     /* temporary background colour*/
-    background-color: beige;
+    background-color: wheat;
+}
+
+hr {
+    border: 5px solid brown;
 }
