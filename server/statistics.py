@@ -4,7 +4,7 @@ import matplotlib.pyplot as plot;
 import pandas as panda;
 import flask;
 
-def generate_histogram_data():
+def generate_histogram_entries():
 	data_frame = panda.DataFrame( 
 		list(
 			database.PostDB.select()
@@ -15,15 +15,32 @@ def generate_histogram_data():
 	data_frame[ "weekday" ] = data_frame[ "date" ].dt.day_name()
 
 	plot.hist( data_frame[ "weekday" ], bins = 7 )
-	#plot.xlabel()
-	#plot.ylabel()
-	#plot.title()
-	plot.savefig( "server\static\images\dynamic\hist.png", dpi=300 )
+	plot.xlabel( "Days of the week" )
+	plot.ylabel( "Entries" )
+	plot.title( "Lost entry distributin per day" )
+	plot.savefig( "server/static/images/dynamic/hist.png", dpi=300 )
 	plot.close()
 
+def generate_most_used_tag_per_day_heatmap():
+	data_frame = panda.DataFrame(
+		list(
+			database.PostTagDB.select( database.PostTagDB.tag )
+			.dicts()
+		)
+	)
+
+	data_frame_count = data_frame[ "tag" ].value_counts().reset_index()
+	data_frame_count.columns = [ "tag", "count" ]
+
+	
+
+	print( data_frame_count )
 
 
 @application.route( "/statistics" )
 def	route_statistics():
-	generate_histogram_data()
+	generate_most_used_tag_per_day_heatmap()
+	generate_histogram_entries()
 	return flask.render_template( "statistics.html" )
+
+generate_most_used_tag_per_day_heatmap()
