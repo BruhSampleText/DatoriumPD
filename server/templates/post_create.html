@@ -17,7 +17,10 @@
 
 	<div id="image_preview_holder"></div>	
 	<br>
+	<div id="forButtons">
 
+	</div>
+	<br>
 	<input type="submit" value="Post!">
 
 </form>
@@ -27,20 +30,38 @@
 
 	const upload = document.getElementById( "post_images" )
 	const image_holder = document.getElementById( "image_preview_holder" )
+	const forButtons = document.getElementById("forButtons")
+	let files = upload.files
+
+	function remove(what){
+
+	}
+	function makeButton(){
+		let removeButton = document.createElement("button")
+		removeButton.onclick = () => {remove(i)}
+		removeButton.innerHTML = "Remove picture"
+		removeButton.style.width = 50 + "px";
+		forButtons.append(removeButton)
+	}
 	upload.onchange = event => {
+		pictures=0;
 		while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
+		while ( forButtons.firstChild ) { forButtons.removeChild( forButtons.lastChild ) }
 		
 		console.log( upload.files )
 
 		const files = upload.files
 		for ( let i = 0; i < files.length; i++ ) {
 			if ( i > 4) break;
+			
 			let img = document.createElement( "img" )
-			img.style = "max-width: 100px; max-height: 100px"
+			img.style = "max-width: 150px; max-height: 150px"
 			image_holder.append( img )
+			// img.onload= makeButton()
 			img.src = URL.createObjectURL( files[ i ] )
-		}
 
+		}
+		//i dont care anymore
 	}
 
 	bind_tag_autocomplete( document.getElementById( "post_tags" ) )
