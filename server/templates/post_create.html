@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{{ url_for( "static", filename = "autocomplete.css" ) }}">
 <form action="" method="" enctype="multipart/form-data" autocomplete="off" >
 	<label for="post_title">Post title:</label>
@@ -10,9 +9,11 @@
 		<input type="text" id="post_tags" name="post_tags" required>
 	</div>	
 	<br>
-
-	<label for="post_images">Post images:</label>
+	<label>Date when found: <input type="date" id="foundDate"> </label> <br> 
+	<label for="post_images">Post images (max 4):</label>
 	<input type="file" id="post_images" name="post_images" accept="image/*" multiple required>
+	<br>
+	<a style="font-size: 10px;">Click on image to delete it</h3>
 	<br>
 
 	<div id="image_preview_holder"></div>	
@@ -34,7 +35,9 @@
 	let files = upload.files
 
 	function remove(what){
-
+		//console.log( document.getElementById( "button" + what ).style )
+		forButtons.removeChild(document.getElementById("button" + what))
+		// console.log("remove IMG " + document.querySelector('.forButtons:nth-child(1)').src)
 	}
 	function makeButton(){
 		let removeButton = document.createElement("button")
@@ -45,7 +48,7 @@
 	}
 	upload.onchange = event => {
 		pictures=0;
-		while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
+		//while ( image_holder.firstChild ) { image_holder.removeChild( image_holder.lastChild ) }
 		while ( forButtons.firstChild ) { forButtons.removeChild( forButtons.lastChild ) }
 		
 		console.log( upload.files )
@@ -60,11 +63,26 @@
 			// img.onload= makeButton()
 			img.src = URL.createObjectURL( files[ i ] )
 
+			let removeButton = document.createElement("button")
+			removeButton.onclick = () => {remove(i)}
+			removeButton.style.backgroundImage = URL.createObjectURL( files[ i ] )
+			removeButton.style = "max-width: 150px; max-height: 150px"
+			removeButton.style.border = "none"
+			removeButton.type = "Button"
+			// removeButton.style.background = "none"
+			removeButton.style.padding = "0"
+			removeButton.style.cursor = "pointer"
+			removeButton.id = "button" +i
+			removeButton.append(img)
+			forButtons.append(removeButton)
+
+
+			
+		
+		//I don't care anymore
 		}
-		//i dont care anymore
 	}
 
 	bind_tag_autocomplete( document.getElementById( "post_tags" ) )
 
 </script>
-
