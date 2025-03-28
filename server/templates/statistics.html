@@ -1,1 +1,16 @@
 <image src="{{ url_for( "static", filename = "images/dynamic/hist.svg" ) }}" width="25%"></image>
+
+<form>
+	<lable for="dataset_size"></lable>
+	<input name="dataset_size" id="dataset_size" type="number" value="10" min="1" max="100">
+	<br>
+
+	<label for="data_type">Select data type:</label>
+	<select name="data_type">
+		<option value="users">User Data</option>
+		<option value="products">Product Data</option>
+	</select>
+
+
+	<input type="submit" value="Request">
+</form>
